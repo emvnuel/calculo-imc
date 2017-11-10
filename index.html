@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Cálculo IMC</title>
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    </head>
+
+    <body>
+        <main>
+            <div class="container">
+                <h1 style="margin:.5em 0;" class="text-center">Cálculo IMC</h1>
+                <form name="calculo_imc">
+                    <div class="row">
+                        <div class="form-group col-sm-4">
+                            <label for="nome">Nome</label>
+                            <input class="form-control" placeholder="Ex: João Silva" type="text" name="nome" id="nome">
+                            
+                        </div>
+
+                        <div class="form-group col-sm-4">
+                            <label for="peso">Peso</label>
+                            <div class="input-group">
+                                <input maxlength="3" placeholder="Ex: 80" class="form-control" type="text" name="peso" id="peso">
+                                <span class="input-group-addon">Kg</span>
+                            </div>
+                            
+                        </div>                
+
+                        <div class="form-group col-sm-4">
+                            <label for="altura">Altura</label>
+                            <div class="input-group">
+                                <input maxlength="4" placeholder="Ex: 1.75" class="form-control" type="text" name="altura" id="altura">
+                                <span class="input-group-addon">m</span>
+                            </div>
+                            
+                        </div>                
+                    </div>
+                    <input style="cursor:pointer;" class="btn btn-primary" id="calcular_imc" type="button" value="Calcular IMC">
+                </form>
+                <br>
+                <p style="font-size:18px;" id="mostrar_imc"></p>
+            </div>
+        </main>
+        <script src="js/index.js"></script>
+    </body>
+    
+</html>
