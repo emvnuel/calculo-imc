@@ -31,12 +31,31 @@ function classificarImc(imc) {
     }
 }
 
+function validate(evt) {
+    var keyID = evt.keyCode;
+    if (keyID != 8 && keyID != 9 && keyID != 37 && keyID != 39 && keyID != 46 && keyID != 36 && keyID != 35 && keyID != 190) {
+        var theEvent = evt || window.event;
+        var key = theEvent.keyCode || theEvent.which;
+        key = String.fromCharCode(key);
+        var regex = /[0-9]|\./;
+        if (!regex.test(key)) {
+            theEvent.returnValue = false;
+            if (theEvent.preventDefault) theEvent.preventDefault();
+        }
+    }
+
+}
+
 var $calcular_imc = document.getElementById("calcular_imc");
+var $peso = document.getElementById("peso");
+var $altura = document.getElementById("altura");
+
+$peso.addEventListener("keydown", validate);
+$altura.addEventListener("keydown", validate)
 
 $calcular_imc.addEventListener("click", function () {
     var $nome = document.getElementById("nome");
-    var $peso = document.getElementById("peso");
-    var $altura = document.getElementById("altura");
+    
     var $mostra_imc = document.getElementById("mostrar_imc");
 
     if ($nome.value != "" && $peso.value != "" && $altura.value != "") {
