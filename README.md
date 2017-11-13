@@ -1,2 +1,2 @@
 # calculo-imc
-Cálculo IMC usando javascript.
+Cálculo IMC usando javascript e bootstrap.
