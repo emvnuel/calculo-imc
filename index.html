@@ -14,7 +14,7 @@
         <main>
             <div class="container">
                 <h1 class="py-4 text-center">Cálculo IMC</h1>
-                <form class="py-4" name="calculo_imc">
+                <form name="calculo_imc">
                     <div class="row">
         
                         <div class="form-group col-xl-4 col-md-6">
@@ -62,7 +62,7 @@
 
                 </form>
                 
-                <p class="h5" id="mostrar_imc"></p>
+                <p class="py-4 h5" id="mostrar_imc"></p>
             </div>
         </main>
         
@@ -76,12 +76,19 @@
 
             $calcular_imc.addEventListener("click", function () {
                 var $nome = document.forms['calculo_imc'].nome;
-                
+                var $mostrar_nome = document.forms['calculo_imc'].mostrar_nome;
                 var $mostra_imc = document.getElementById("mostrar_imc");
 
                 if ($nome.value != "" && $peso.value != "" && $altura.value != "") {
                     var imc = calcularImc($peso.value, $altura.value).toFixed(2);
-                    $mostra_imc.textContent = $nome.value + ", seu IMC é " +imc+", você está "+classificarImc(imc)+".";   
+                    
+                    if ($mostrar_nome.value == 0) {
+                        $mostra_imc.textContent = $nome.value + ", seu IMC é " +imc+", você está "+classificarImc(imc)+".";       
+                    }
+                    else if($mostrar_nome.value == 1) {
+                        $mostra_imc.textContent = "Seu IMC é " +imc+", você está "+classificarImc(imc)+".";
+                    }
+                    
                 }
                 else {
                     alert("Preencha todos os campos para calcular o IMC");
