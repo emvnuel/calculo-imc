@@ -6,17 +6,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Cálculo IMC</title>
-        
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+        <script src="js/index.js"></script>
     </head>
 
     <body>
         <main>
             <div class="container">
                 <h1 class="py-4 text-center">Cálculo IMC</h1>
-                <form name="calculo_imc">
+                <form class="py-4" name="calculo_imc">
                     <div class="row">
-                        
+        
                         <div class="form-group col-xl-4 col-md-6">
                             <label for="nome">Nome</label>
                             <input class="form-control" placeholder="Ex: João Silva" type="text" name="nome" id="nome">  
@@ -37,17 +37,41 @@
                                 <input maxlength="4" placeholder="Ex: 1.75" class="form-control" type="text" name="altura" id="altura">
                                 <span class="input-group-addon">m</span>
                             </div>
-                            
                         </div>                
                     </div>
+
                     <input style="cursor:pointer;" class="btn btn-primary" name="calcular_imc" id="calcular_imc" type="button" value="Calcular IMC">
                     <input style="cursor:pointer;" class="btn btn-secondary" type="reset" value="Limpar">
+
                 </form>
-                <br>
+                
                 <p class="h5" id="mostrar_imc"></p>
             </div>
         </main>
-        <script src="js/index.js"></script>
+        
+        <script>
+            var $calcular_imc = document.forms['calculo_imc'].calcular_imc;
+            var $peso = document.forms['calculo_imc'].peso;
+            var $altura = document.forms['calculo_imc'].altura;
+
+            $peso.addEventListener("keydown", validate);
+            $altura.addEventListener("keydown", validate)
+
+            $calcular_imc.addEventListener("click", function () {
+                var $nome = document.forms['calculo_imc'].nome;
+                
+                var $mostra_imc = document.getElementById("mostrar_imc");
+
+                if ($nome.value != "" && $peso.value != "" && $altura.value != "") {
+                    var imc = calcularImc($peso.value, $altura.value).toFixed(2);
+                    $mostra_imc.textContent = $nome.value + ", seu IMC é " +imc+", você está "+classificarImc(imc)+".";   
+                }
+                else {
+                    alert("Preencha todos os campos para calcular o IMC");
+                }
+
+            });
+        </script>
     </body>
     
 </html>

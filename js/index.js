@@ -1,4 +1,3 @@
-
 function calcularImc(peso, altura) {
     var imc = peso / (altura * altura);
     return imc;
@@ -45,25 +44,3 @@ function validate(evt) {
     }
 
 }
-
-var $calcular_imc = document.forms['calculo_imc'].calcular_imc;
-var $peso = document.forms['calculo_imc'].peso;
-var $altura = document.forms['calculo_imc'].altura;
-
-$peso.addEventListener("keydown", validate);
-$altura.addEventListener("keydown", validate)
-
-$calcular_imc.addEventListener("click", function () {
-    var $nome = document.forms['calculo_imc'].nome;
-    
-    var $mostra_imc = document.getElementById("mostrar_imc");
-
-    if ($nome.value != "" && $peso.value != "" && $altura.value != "") {
-        var imc = calcularImc($peso.value, $altura.value).toFixed(2);
-        $mostra_imc.textContent = $nome.value + ", seu IMC é " +imc+", você está "+classificarImc(imc)+".";   
-    }
-    else {
-        alert("Preencha todos os campos para calcular o IMC");
-    }
-
-});
