@@ -28,7 +28,6 @@
                                 <input maxlength="3" placeholder="Ex: 80" class="form-control" type="text" name="peso" id="peso">
                                 <span class="input-group-addon">Kg</span>
                             </div>
-                            
                         </div>                
 
                         <div class="form-group col-xl-4 col-md-6">
@@ -55,6 +54,13 @@
                                 </label>
                             </div>                            
                         </div>
+                        <div class="form-group col-xl-4 col-md-6">
+                            <label for="mostar_condicao_fisica">Mostrar condição física</label>
+                            <select name="mostar_condicao_fisica" id="mostar_condicao_fisica" class="form-control">
+                                <option selected value="0">Sim</option>
+                                <option value="1">Não</option>
+                            </select>
+                        </div>
                     </div>
 
                     <input style="cursor:pointer;" class="btn btn-primary" name="calcular_imc" id="calcular_imc" type="button" value="Calcular IMC">
@@ -70,11 +76,15 @@
             var $calcular_imc = document.forms['calculo_imc'].calcular_imc;
             var $peso = document.forms['calculo_imc'].peso;
             var $altura = document.forms['calculo_imc'].altura;
+            var $mostar_condicao_fisica = document.forms['calculo_imc'].mostar_condicao_fisica;
 
             $peso.addEventListener("keydown", validate);
-            $altura.addEventListener("keydown", validate)
+            $altura.addEventListener("keydown", validate);
+            $mostar_condicao_fisica.addEventListener("change", mostrarIMC);
 
-            $calcular_imc.addEventListener("click", function () {
+            $calcular_imc.addEventListener("click", mostrarIMC);
+
+            function mostrarIMC() {
                 var $nome = document.forms['calculo_imc'].nome;
                 var $mostrar_nome = document.forms['calculo_imc'].mostrar_nome;
                 var $mostra_imc = document.getElementById("mostrar_imc");
@@ -82,11 +92,17 @@
                 if ($nome.value != "" && $peso.value != "" && $altura.value != "") {
                     var imc = calcularImc($peso.value, $altura.value).toFixed(2);
                     
-                    if ($mostrar_nome.value == 0) {
+                    if ($mostrar_nome.value == 0 && mostar_condicao_fisica.value == 0) {
                         $mostra_imc.textContent = $nome.value + ", seu IMC é " +imc+", você está "+classificarImc(imc)+".";       
                     }
-                    else if($mostrar_nome.value == 1) {
+                    else if($mostrar_nome.value == 1 && mostar_condicao_fisica.value == 0) {
                         $mostra_imc.textContent = "Seu IMC é " +imc+", você está "+classificarImc(imc)+".";
+                    }
+                    else if ($mostrar_nome.value == 0 && mostar_condicao_fisica.value == 1) {
+                        $mostra_imc.textContent = $nome.value + ", seu IMC é " +imc;
+                    }
+                    else if($mostrar_nome.value == 1 && mostar_condicao_fisica.value == 1) {
+                        $mostra_imc.textContent = "Seu IMC é " +imc;
                     }
                     
                 }
@@ -94,7 +110,8 @@
                     alert("Preencha todos os campos para calcular o IMC");
                 }
 
-            });
+
+            }
         </script>
     </body>
     
