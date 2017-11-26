@@ -25,7 +25,7 @@
                         <div class="form-group col-xl-4 col-md-6">
                             <label for="peso">Peso</label>
                             <div class="input-group">
-                                <input maxlength="3" placeholder="Ex: 80" class="form-control" type="text" name="peso" id="peso">
+                                <input placeholder="Ex: 80" step="any" class="form-control" max="600" type="number" name="peso" id="peso">
                                 <span class="input-group-addon">Kg</span>
                             </div>
                         </div>                
@@ -33,7 +33,7 @@
                         <div class="form-group col-xl-4 col-md-6">
                             <label for="altura">Altura</label>
                             <div class="input-group">
-                                <input maxlength="4" placeholder="Ex: 1.75" class="form-control" type="text" name="altura" id="altura">
+                                <input placeholder="Ex: 1.75" class="form-control" max="3" step="any" type="number" name="altura" id="altura">
                                 <span class="input-group-addon">m</span>
                             </div>
                         </div>  
@@ -78,8 +78,6 @@
             var $altura = document.forms['calculo_imc'].altura;
             var $mostar_condicao_fisica = document.forms['calculo_imc'].mostar_condicao_fisica;
 
-            $peso.addEventListener("keydown", validate);
-            $altura.addEventListener("keydown", validate);
             $mostar_condicao_fisica.addEventListener("change", mostrarIMC);
 
             $calcular_imc.addEventListener("click", mostrarIMC);

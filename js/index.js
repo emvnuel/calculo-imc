@@ -29,18 +29,3 @@ function classificarImc(imc) {
         return classificao;
     }
 }
-
-function validate(evt) {
-    var keyID = evt.keyCode;
-    if (keyID != 8 && keyID != 9 && keyID != 37 && keyID != 39 && keyID != 46 && keyID != 36 && keyID != 35 && keyID != 190) {
-        var theEvent = evt || window.event;
-        var key = theEvent.keyCode || theEvent.which;
-        key = String.fromCharCode(key);
-        var regex = /[0-9]|\./;
-        if (!regex.test(key)) {
-            theEvent.returnValue = false;
-            if (theEvent.preventDefault) theEvent.preventDefault();
-        }
-    }
-
-}
