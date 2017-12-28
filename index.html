@@ -20,13 +20,13 @@
         
                         <div class="form-group col-lg-4 col-md-6">
                             <label for="nome">Nome</label>
-                            <input class="form-control" placeholder="Ex: João Silva" type="text" name="nome" id="nome">  
+                            <input class="form-control" placeholder="Ex: João Silva" type="text" name="nome" id="nome" required="required">  
                         </div>
 
                         <div class="form-group col-lg-4 col-md-6">
                             <label for="peso">Peso</label>
                             <div class="input-group">
-                                <input placeholder="Ex: 80" class="form-control" type="number" step="0.01" oninput="validity.valid || (value='');" min="0,01" max="600" name="peso" id="peso">
+                                <input placeholder="Ex: 80" class="form-control" type="number" step="0.01" min="0,01" max="600" name="peso" id="peso" required="required">
                                 <span class="input-group-addon">Kg</span>
                             </div>
                         </div>                
@@ -34,7 +34,7 @@
                         <div class="form-group col-lg-4 col-md-6">
                             <label for="altura">Altura</label>
                             <div class="input-group">
-                                <input placeholder="Ex: 1,75" class="form-control" type="number" step="0.01" oninput="validity.valid || (value='');" min="0,01" max="3" name="altura" id="altura">
+                                <input placeholder="Ex: 1,75" class="form-control" type="number" step="0.01" min="0,01" max="3" name="altura" id="altura" required="required">
                                 <span class="input-group-addon">m</span>
                             </div>
                         </div>  
@@ -64,7 +64,7 @@
                         </div>
                     </div>
 
-                    <input style="cursor:pointer;" class="btn btn-primary" name="calcular_imc" id="calcular_imc" type="button" value="Calcular IMC">
+                    <input style="cursor:pointer;" class="btn btn-primary" name="calcular_imc" id="calcular_imc" type="submit" value="Calcular IMC">
                     <input style="cursor:pointer;" class="btn btn-secondary" type="reset" value="Limpar">
 
                 </form>
@@ -74,43 +74,13 @@
         </main>
         
         <script>
-            var $calcular_imc = document.forms['calculo_imc'].calcular_imc;
+            var $form = document.getElementsByTagName('form')[0];
             var $peso = document.forms['calculo_imc'].peso;
             var $altura = document.forms['calculo_imc'].altura;
             var $mostar_condicao_fisica = document.forms['calculo_imc'].mostar_condicao_fisica;
 
-            $mostar_condicao_fisica.addEventListener("change", mostrarIMC);
-
-            $calcular_imc.addEventListener("click", mostrarIMC);
-
-            function mostrarIMC() {
-                var $nome = document.forms['calculo_imc'].nome;
-                var $mostrar_nome = document.forms['calculo_imc'].mostrar_nome;
-                var $mostra_imc = document.getElementById("mostrar_imc");
-
-                if ($nome.value != "" && $peso.value != "" && $altura.value != "") {
-                    var imc = calcularImc($peso.value, $altura.value).toFixed(2);
-                    
-                    if ($mostrar_nome.value == 0 && mostar_condicao_fisica.value == 0) {
-                        $mostra_imc.textContent = $nome.value + ", seu IMC é " +imc+", você está "+classificarImc(imc)+".";       
-                    }
-                    else if($mostrar_nome.value == 1 && mostar_condicao_fisica.value == 0) {
-                        $mostra_imc.textContent = "Seu IMC é " +imc+", você está "+classificarImc(imc)+".";
-                    }
-                    else if ($mostrar_nome.value == 0 && mostar_condicao_fisica.value == 1) {
-                        $mostra_imc.textContent = $nome.value + ", seu IMC é " +imc;
-                    }
-                    else if($mostrar_nome.value == 1 && mostar_condicao_fisica.value == 1) {
-                        $mostra_imc.textContent = "Seu IMC é " +imc;
-                    }
-                    
-                }
-                else {
-                    alert("Preencha todos os campos para calcular o IMC");
-                }
-
-
-            }
+            $form.addEventListener("submit", mostrarIMC);          
+            $mostar_condicao_fisica.addEventListener('change', mostrarIMC)
         </script>
     </body>
     

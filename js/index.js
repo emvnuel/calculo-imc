@@ -25,3 +25,27 @@ function classificarImc(imc) {
     }
     return classificao;
 }
+
+function mostrarIMC(event) {    
+    event.preventDefault();
+    
+    var $nome = document.forms['calculo_imc'].nome;
+    var $mostrar_nome = document.forms['calculo_imc'].mostrar_nome;
+    var $mostra_imc = document.getElementById("mostrar_imc");    
+    var imc = calcularImc($peso.value, $altura.value).toFixed(2);
+    
+    if($nome.value != '' && $peso.value != '' && $altura.value != '' && $form.checkValidity()) {
+    
+        if ($mostrar_nome.value == 0 && mostar_condicao_fisica.value == 0)
+            $mostra_imc.textContent = $nome.value + ", seu IMC é " +imc+", você está "+classificarImc(imc)+".";       
+        
+        else if($mostrar_nome.value == 1 && mostar_condicao_fisica.value == 0) 
+            $mostra_imc.textContent = "Seu IMC é " +imc+", você está "+classificarImc(imc)+".";
+        
+        else if ($mostrar_nome.value == 0 && mostar_condicao_fisica.value == 1)
+            $mostra_imc.textContent = $nome.value + ", seu IMC é " +imc;
+        
+        else if($mostrar_nome.value == 1 && mostar_condicao_fisica.value == 1) 
+            $mostra_imc.textContent = "Seu IMC é " +imc;
+    }                    
+}
