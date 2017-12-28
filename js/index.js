@@ -30,8 +30,11 @@ function mostrarIMC(event) {
     event.preventDefault();
     
     var $nome = document.forms['calculo_imc'].nome;
+    var $peso = document.forms['calculo_imc'].peso;
+    var $altura = document.forms['calculo_imc'].altura;
     var $mostrar_nome = document.forms['calculo_imc'].mostrar_nome;
     var $mostra_imc = document.getElementById("mostrar_imc");    
+    
     var imc = calcularImc($peso.value, $altura.value).toFixed(2);
     
     if($nome.value != '' && $peso.value != '' && $altura.value != '' && $form.checkValidity()) {
