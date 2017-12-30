@@ -1,3 +1,17 @@
+window.onload = function() {
+    $form = document.getElementsByTagName('form')[0];
+    var $limpar = document.getElementById('limpar');
+    var $mostar_condicao_fisica = document.forms['calculo_imc'].mostar_condicao_fisica;
+
+    $form.addEventListener("submit", mostrarIMC);          
+    $mostar_condicao_fisica.addEventListener('change', mostrarIMC)
+            
+    $limpar.addEventListener('click', function(){
+        var $mostra_imc = document.getElementById("mostrar_imc");
+        $mostra_imc.textContent = '';
+    });
+}
+
 function calcularImc(peso, altura) {
     var imc = peso / (altura * altura);
     return imc;

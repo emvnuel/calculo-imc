@@ -65,21 +65,13 @@
                     </div>
 
                     <input style="cursor:pointer;" class="btn btn-primary" name="calcular_imc" id="calcular_imc" type="submit" value="Calcular IMC">
-                    <input style="cursor:pointer;" class="btn btn-secondary" type="reset" value="Limpar">
+                    <input id="limpar" style="cursor:pointer;" class="btn btn-secondary" type="reset" value="Limpar">
 
                 </form>
                 
                 <p class="py-4 h5" id="mostrar_imc"></p>
             </div>
         </main>
-        
-        <script>
-            var $form = document.getElementsByTagName('form')[0];
-            var $mostar_condicao_fisica = document.forms['calculo_imc'].mostar_condicao_fisica;
-
-            $form.addEventListener("submit", mostrarIMC);          
-            $mostar_condicao_fisica.addEventListener('change', mostrarIMC)
-        </script>
     </body>
     
 </html>
